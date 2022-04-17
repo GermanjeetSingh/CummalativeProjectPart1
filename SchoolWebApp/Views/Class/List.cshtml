@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Class>
+@{
+    ViewData["Title"] = "View Classess";
+}
+
+<div class="text-center">
+    <h1 class="display-4">All Classess</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Class Id</th>
+                <th scope="col">Class Code</th>
+                <th scope="col">Teacher Id</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Finish Date</th>
+                <th scope="col">Class Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cl in Model)
+            {
+            <tr>
+                <th scope="row">@Html.DisplayFor(item => cl.classid)</th>
+                <th>@Html.DisplayFor(item => cl.classcode)</th>
+                <th>
+                    <span>@Html.DisplayFor(item => cl.teacherid)</span>
+                    <span>(@Html.ActionLink("View Details", "Show", "Teacher", new { id = cl.teacherid }))</span></th>
+                <th>@Convert.ToDateTime(cl.startdate).ToString("ddd, dd MMM yyyy")</th>
+                <th>@Convert.ToDateTime(cl.finishdate).ToString("ddd, dd MMM yyyy")</th>
+                <th>@Html.DisplayFor(item => cl.classname)</th>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

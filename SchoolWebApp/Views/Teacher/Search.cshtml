@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Teacher>
+@{
+    ViewData["Title"] = "Search Teachers";
+}
+
+@using (Html.BeginForm("Search", "Teacher", FormMethod.Get))
+{
+    <div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" name="type" value="1" id="radio-name" class="custom-control-input" />
+            <label class="custom-control-label" for="radio-name">Name</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" name="type" value="3" id="radio-hire-date" class="custom-control-input" />
+            <label class="custom-control-label" for="radio-hire-date">Hire Date</label>
+        </div>
+
+
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" name="type" value="2" id="radio-salary" class="custom-control-input" />
+            <label class="custom-control-label" for="radio-salary">Salary</label>
+        </div>
+
+
+        <div class="form-group" style="width:20em;margin-top:1em">
+            <input type="text" name="searchParam" class="form-control" id="exampleFormControlInput1" placeholder="Search">
+        </div>
+        <button class="btn btn-primary" type="submit" value="Submit">Search</button>
+
+    </div>
+}
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-striped" style="margin-top:1em">
+        <thead>
+            <tr>
+                <th scope="col">Teacher Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Employee Id</th>
+                <th scope="col">Hire Date</th>
+                <th scope="col">Salary</th>
+                <th scope="col">View</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var teacher in Model)
+            {
+                <tr>
+                    <th scope="row">@Html.DisplayFor(item => teacher.teacherid)</th>
+                    <th>@Html.DisplayFor(item => teacher.teacherfname)</th>
+                    <th>@Html.DisplayFor(item => teacher.teacherlname)</th>
+                    <th>@Html.DisplayFor(item => teacher.employeenumber)</th>
+                    <th>@Convert.ToDateTime(teacher.hiredate).ToString("ddd, dd MMM yyyy")</th>
+                    <th>@Html.DisplayFor(item => teacher.salary)</th>
+                    <th>@Html.ActionLink("Details", "Show", new { id = teacher.teacherid })</th>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+}
+@if (Model != null && Model.Count() == 0)
+{
+    <span style="margin-top:1em">No teacher(s) found for your search.</span>
+}

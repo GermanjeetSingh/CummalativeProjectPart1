@@ -1,0 +1,52 @@
+﻿@model TeacherClasses
+@{
+    ViewData["Title"] = "View Teacher Details";
+}
+
+<div>
+    <h1 class="display-4">Teacher details</h1>
+    <div class="card" style="width: 50rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(Model => Model.teacher.teacherid): @Html.DisplayFor(Model => Model.teacher.teacherlname),@Html.DisplayFor(Model => Model.teacher.teacherfname)</h5>
+            <h6 class="card-subtitle mb-2 text-muted">#@Html.DisplayFor(Model => Model.teacher.employeenumber)</h6>
+            <p class="card-text">Salary : $@Html.DisplayFor(Model => Model.teacher.salary)</p>
+            <p class="card-text">Hired On : @Convert.ToDateTime(Model.teacher.hiredate).ToString("ddd, dd MMM yyyy")</p>
+            @if (Model.classes.Count() > 0)
+            {
+                <div>
+                    <h5>Courses Assigned</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Class Id</th>
+                                <th scope="col">Class Code</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">Finish Date</th>
+                                <th scope="col">Class Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cl in Model.classes)
+                            {
+                                <tr>
+                                    <th scope="row">@Html.DisplayFor(item => cl.classid)</th>
+                                    <th>@Html.DisplayFor(item => cl.classcode)</th>
+                                    <th>@Convert.ToDateTime(cl.startdate).ToString("ddd, dd MMM yyyy")</th>
+                                    <th>@Convert.ToDateTime(cl.finishdate).ToString("ddd, dd MMM yyyy")</th>
+                                    <th>@Html.DisplayFor(item => cl.classname)</th>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <span>No Courses assigned.</span>
+            }
+        </div>
+    
+    </div>
+    
+</div>

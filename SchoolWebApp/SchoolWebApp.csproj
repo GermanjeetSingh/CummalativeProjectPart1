@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="EntityFramework" />
+    <None Remove="Views\Teacher\" />
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="MySql.Data.EntityFrameworkCore" />
+    <None Remove="MySql.EntityFrameworkCore" />
+    <None Remove="MySQL.Data.Entities" />
+    <None Remove="Microsoft.AspNet.WebApi.Core" />
+    <None Remove="Microsoft.AspNet.WebApi" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Views\Student\" />
+    <None Remove="Views\Class\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Teacher\" />
+    <Folder Include="Views\Student\" />
+    <Folder Include="Views\Class\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+</Project>
